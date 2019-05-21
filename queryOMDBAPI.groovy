@@ -11,9 +11,11 @@ def queryomdb() {
     def movieName = System.in.newReader().readLine()
 
     println "Running Query"
-    sh """
-    curl ${baseURL}\\?t=${movieName}&apikey=${apikey}
+    run = """
+    curl "${baseURL}\\?t=${movieName}&apikey=${apikey}"
     """  
+    run = run.execute().text
+    println run.split(',')
 }
 
 queryomdb()
